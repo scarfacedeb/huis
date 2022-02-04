@@ -20,11 +20,10 @@ module Huis
     end
 
     def call(env)
-      req = Rack::Request.new(env)
-      queries = req.params["queries"].to_s.split("|").to_set
-
+      queries = env['rack.input'].gets.to_s.split('|').to_set
       queries -= store.queries
-      return [400, {}, ["No new queries"]] if queries.empty?
+
+      return [200, {}, ["No new queries"]] if queries.empty?
 
       responses = queries.map { Huis.walter.search(_1) }
 
