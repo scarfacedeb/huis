@@ -1,0 +1,13 @@
+/tmp
+/data
+!/data/.keep
+/log/*.log
+
+*.DS_Store
+.bundle
+tags
+.env
+.pry_history
+.byebug_history
+.ruby-version
+.tool-versions
